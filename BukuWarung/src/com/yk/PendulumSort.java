@@ -21,8 +21,9 @@ import java.util.Arrays;
 //        Input: arr[] = {11, 2, 4, 55, 6, 8}
 //        Output: 11 6 2 4 8 55
 public class PendulumSort {
-    public static int[] pendulum(int[] input) {
-        Arrays.sort(input);
+    // Time complexity: O(nlog(n)) implementation, O(n) space
+    public static int[] pendulum(int[] input) { // O(n) implementation
+        Arrays.sort(input); // Java dual pivot quicksort on primitives is average case O(nlog(n))
         int middle  = input.length/2;
         if (input.length % 2 == 0) {
             middle -= 1;
@@ -36,8 +37,9 @@ public class PendulumSort {
         return output;
     }
 
+    // Time complexity: O(n^2) worse case implementation, O(1) space.
     public static int[] pendulumInPlace(int[] input) {
-        Arrays.sort(input); //O(nlog(n))
+        Arrays.sort(input);
 
         // shift inplace all odd numbered indexes to end of array [1,2,3,4,5] -> [1,3,5,2,4]
         int end = input.length / 2;
@@ -77,7 +79,14 @@ public class PendulumSort {
         return input;
     }
 
+
+
     public static void main(String[] args) {
+        // edge cases
+        System.out.println(Arrays.toString(pendulumInPlace(new int[]{4})));
+        // small test case
+        System.out.println(Arrays.toString(pendulumInPlace(new int[]{4,5,6})));
+        // normal cases
         System.out.println(Arrays.toString(pendulum(new int[]{4,3,2,1,5,6,7})));
         System.out.println(Arrays.toString(pendulumInPlace(new int[]{4,3,2,1,5,6,7})));
         System.out.println(Arrays.toString(pendulumInPlace(new int[]{11, 2, 4, 55, 6, 8})));
